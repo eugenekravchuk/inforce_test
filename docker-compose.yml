@@ -17,7 +17,6 @@ services:
     container_name: etl_app
     depends_on:
       - db
-    entrypoint: ["/wait-for-it.sh", "db:5432", "--timeout=30", "--strict", "--"]
     command: ["python", "main.py"]
     environment:
       DB_HOST: db

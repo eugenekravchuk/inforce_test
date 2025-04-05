@@ -1,8 +1,12 @@
-from faker import Faker
+import os
 import csv
+from faker import Faker
 
 def create_fake_users(output_path="data/users.csv"):
     fake = Faker()
+
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
     with open(output_path, mode="w", newline="") as file:
         writer = csv.writer(file)
         writer.writerow(["user_id", "name", "email", "signup_date"])
