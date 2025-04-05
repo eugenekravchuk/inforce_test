@@ -10,14 +10,13 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    restart: unless-stopped
+      - ./sql_scripts:/sql_scripts
 
   app:
     build: .
     container_name: etl_app
     depends_on:
       - db
-    command: ["python", "main.py"]
     environment:
       DB_HOST: db
       DB_PORT: 5432
@@ -26,7 +25,7 @@ services:
       DB_PASSWORD: mypassword
     volumes:
       - .:/app
-    restart: "no"
+    command: ["python", "main.py"]
 
 volumes:
   postgres_data:
