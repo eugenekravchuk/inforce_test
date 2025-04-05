@@ -20,7 +20,15 @@ cd inforce_test
 
 ---
 
-## Usage
+## Assumptions
+
+- All input data is synthetically generated and clean except for intentional invalid emails.
+- Email validation uses a simple regex pattern and may not cover all edge cases.
+- The domain field is extracted by splitting on "@" — assumes all valid emails contain one "@".
+- The ETL pipeline is expected to run once per container session (not a long-running service).
+- PostgreSQL is assumed to be available via Docker Compose at hostname `db`.
+
+## Usage and Verifying assumptions
 
 ### 1. Run the ETL pipeline with Docker Compose
 
